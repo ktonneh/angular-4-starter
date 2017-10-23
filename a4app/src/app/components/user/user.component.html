@@ -1,0 +1,97 @@
+<p>
+  Details for {{name}}
+</p>
+
+<ol>
+  <li>Email : {{email}}</li>
+  <li>Street : {{address.street}}</li>
+  <li>City : {{address.city}}</li>
+  <li>State : {{address.state}}</li>
+  <!--<li>Hobbies : {{hobbies}}</li>-->
+  <li>Hobbies:
+    <ul style="list-style: none">
+      <li *ngFor="let hobby of hobbies;let i = index">{{i+1}}: {{hobby}} <button (click)="deleteHobby(hobby)">x</button></li>
+    </ul>
+  </li>
+
+</ol>
+<button (click)="onClick()" >Click me</button>
+
+<br />
+<br />
+
+<button (click)="toggleEdit()" >Toggle me</button>
+
+<br />
+<div *ngIf=isEdit>
+  <form method="post">
+    <div>
+      <label for="name">
+        Name:
+      </label>
+      <input type="text" name="name" id="name" [(ngModel)]="name" />
+    </div>
+    <br />
+    <div>
+      <label for="email">
+        Email:
+      </label>
+      <input type="text" name="email" id="email" [(ngModel)]="email" />
+    </div>
+    <br />
+    <div>
+      <label for="age">
+        Age:
+      </label>
+      <input type="text" name="age" id="age"  [(ngModel)]="age"/>
+    </div>
+    <br />
+    <div>
+      <label for="state">
+        State:
+      </label>
+      <input type="text" name="state" id="state"  [(ngModel)]="address.state" />
+    </div>
+
+
+    <br />
+    <div>
+      <label for="city">
+        State:
+      </label>
+      <input type="text" name="city" id="city"  [(ngModel)]="address.state" />
+    </div>
+
+    <br />
+    <div>
+      <label for="street">
+        State:
+      </label>
+      <input type="text" name="street" id="street"  [(ngModel)]="address.street" />
+    </div>
+  </form>
+</div>
+
+<br />
+<br />
+
+<form name="frm" method="post" (submit)="saveHobby(hobby.value)">
+  <label>Name:</label>
+  <input type="text" #hobby />
+</form>
+
+<p>
+  User works! this is awesomeness
+</p>
+
+<br />
+<hr>
+<h5>Posts</h5>
+<div *ngFor="let post of posts">
+  <h6>{{ post.title }}</h6>
+  <p>
+    {{post.body}}
+  </p>
+</div>
+
+
