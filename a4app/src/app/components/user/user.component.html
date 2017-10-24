@@ -1,97 +1,130 @@
-<p>
-  Details for {{name}}
-</p>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    User: <strong><small>{{name}}</small></strong>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-6">
+        <ul class="list-group">
+          <li class="list-group-item">Email : {{email}}</li>
+          <li class="list-group-item">Street : {{address.street}}</li>
+          <li class="list-group-item">City : {{address.city}}</li>
+          <li class="list-group-item">State : {{address.state}}</li>
+        </ul>
+      </div>
+      <div class="col-sm-6">
+        <table class="table table-hover table-striped">
+          <thead>
+            <th>
+              ID
+            </th>
+            <th>
+              Name
+            </th>
+          <th>
 
-<ol>
-  <li>Email : {{email}}</li>
-  <li>Street : {{address.street}}</li>
-  <li>City : {{address.city}}</li>
-  <li>State : {{address.state}}</li>
-  <!--<li>Hobbies : {{hobbies}}</li>-->
-  <li>Hobbies:
-    <ul style="list-style: none">
-      <li *ngFor="let hobby of hobbies;let i = index">{{i+1}}: {{hobby}} <button (click)="deleteHobby(hobby)">x</button></li>
-    </ul>
-  </li>
-
-</ol>
-<button (click)="onClick()" >Click me</button>
-
-<br />
-<br />
-
-<button (click)="toggleEdit()" >Toggle me</button>
-
-<br />
-<div *ngIf=isEdit>
-  <form method="post">
-    <div>
-      <label for="name">
-        Name:
-      </label>
-      <input type="text" name="name" id="name" [(ngModel)]="name" />
+          </th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let hobby of hobbies; let i = index">
+              <td>
+                {{i+1}}
+              </td>
+              <td>
+                {{hobby}}
+              </td>
+              <td>
+                <button class="btn btn-sm btn-danger" (click)="deleteHobby(hobby)"><i class="glyphicon glyphicon-remove"></i> delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <br />
-    <div>
-      <label for="email">
-        Email:
-      </label>
-      <input type="text" name="email" id="email" [(ngModel)]="email" />
-    </div>
-    <br />
-    <div>
-      <label for="age">
-        Age:
-      </label>
-      <input type="text" name="age" id="age"  [(ngModel)]="age"/>
-    </div>
-    <br />
-    <div>
-      <label for="state">
-        State:
-      </label>
-      <input type="text" name="state" id="state"  [(ngModel)]="address.state" />
+    <div class="row" id="divAddHobby">
+      <div class="col-sm-12">
+        <h1>Add Hobby</h1>
+        <form name="frm" method="post" (submit)="saveHobby(hobby.value)">
+          <label>Name:</label>
+          <input type="text" #hobby class="form-control"/>
+        </form>
+      </div>
     </div>
 
 
-    <br />
-    <div>
-      <label for="city">
-        State:
-      </label>
-      <input type="text" name="city" id="city"  [(ngModel)]="address.state" />
-    </div>
 
-    <br />
-    <div>
-      <label for="street">
-        State:
-      </label>
-      <input type="text" name="street" id="street"  [(ngModel)]="address.street" />
-    </div>
-  </form>
+  </div>
+  <div class="panel-footer">
+    <button (click)="onClick()" class="btn btn-sm btn-info" >Add Hobby</button>
+
+    <button (click)="toggleEdit()" class="btn btn-sm btn-primary" >Toggle me</button>
+  </div>
 </div>
 
-<br />
-<br />
 
-<form name="frm" method="post" (submit)="saveHobby(hobby.value)">
-  <label>Name:</label>
-  <input type="text" #hobby />
-</form>
+<div *ngIf=isEdit class="row">
+    <form method="post">
+      <div>
+        <label for="name">
+          Name:
+        </label>
+        <input type="text" name="name" id="name" [(ngModel)]="name" class="form-control"/>
+      </div>
+      <br />
+      <div>
+        <label for="email">
+          Email:
+        </label>
+        <input type="text" name="email" id="email" [(ngModel)]="email" class="form-control"/>
+      </div>
+      <br />
+      <div>
+        <label for="age">
+          Age:
+        </label>
+        <input type="text" name="age" id="age"  [(ngModel)]="age" class="form-control"/>
+      </div>
+      <br />
+      <div>
+        <label for="state">
+          State:
+        </label>
+        <input type="text" name="state" id="state"  [(ngModel)]="address.state" class="form-control" />
+      </div>
 
-<p>
-  User works! this is awesomeness
-</p>
 
-<br />
-<hr>
-<h5>Posts</h5>
-<div *ngFor="let post of posts">
-  <h6>{{ post.title }}</h6>
-  <p>
-    {{post.body}}
-  </p>
+      <br />
+      <div>
+        <label for="city">
+          State:
+        </label>
+        <input type="text" name="city" id="city"  [(ngModel)]="address.state" class="form-control"/>
+      </div>
+
+      <br />
+      <div>
+        <label for="street">
+          State:
+        </label>
+        <input type="text" name="street" id="street"  [(ngModel)]="address.street" class="form-control" />
+      </div>
+    </form>
+</div>
+
+<div  class="row">
+  <div class="media" *ngFor="let post of posts">
+    <div class="media-left">
+      <a href="#">
+        <img class="media-object" src="..." alt="...">
+      </a>
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">
+        {{ post.title }}
+      </h4>
+      {{post.body}}
+    </div>
+  </div>
 </div>
 
 

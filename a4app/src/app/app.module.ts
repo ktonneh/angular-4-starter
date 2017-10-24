@@ -5,12 +5,16 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { UserComponent } from './components/user/user.component';
-import { DataService } from './services/data.service'
+import { DataService } from './services/data.service';
+import { NavComponent } from './components/nav/nav.component';
+import { FooterComponent } from './components/footer/footer.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent
+    UserComponent,
+    NavComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
